@@ -1,6 +1,13 @@
-// current date moment.js
+// current date
 var today = moment().format("MMM Do, YYYY");
 $("#currentDay").text(today);
+
+// text area selector
+var textArea = document.querySelector("textarea");
+
+
+//save button
+var saveBtn = document.querySelector('#save');
 
 //Change textarea background color based on time
 var checkTime = function () {
@@ -8,10 +15,10 @@ var checkTime = function () {
     //Get Current time
     var currentTime = moment().format('H');
 
-    //get all elements with class "taskarea"
+    //get all elements with class "textarea"
     var timeBlockElements = $(".textarea");
 
-    //loop through taskarea classes
+    //loop through textarea classes
     for (var i = 0 ; i < timeBlockElements.length ; i++) {
 
         //Get element i's ID as a string
@@ -36,3 +43,25 @@ var checkTime = function () {
 
 // checkTime every 5 minutes
 setInterval(checkTime(), (1000 * 60) * 5);
+
+// render message in text area
+renderLastResgistered();
+
+function renderLastResgistered(){
+var text = localStorage.getItem("#09");
+textArea.textContent = text;
+}
+
+function displayMessage(type, message) {
+    textArea.textContent = message;
+    textArea.setAttribute("class", type);
+  }    
+
+//save button listener
+saveBtn.addEventListener('click',function(event){
+    event.preventDefault();
+    var textArea = document.querySelector("textarea").value;
+    
+    localStorage.setItem("#09", textArea);
+    renderLastResgistered();
+});
