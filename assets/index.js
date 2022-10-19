@@ -48,7 +48,7 @@ setInterval(checkTime(), (1000 * 60) * 5);
 renderLastResgistered();
 
 function renderLastResgistered(){
-var text = localStorage.getItem("#09");
+var text = localStorage.getItem("textarea");
 textArea.textContent = text;
 }
 
@@ -58,10 +58,10 @@ function displayMessage(type, message) {
   }    
 
 //save button listener
-saveBtn.addEventListener('click',function(event){
-    event.preventDefault();
+document.addEventListener('click',function(event){
+    console.log(event.target)
     var textArea = document.querySelector("textarea").value;
     
-    localStorage.setItem("#09", textArea);
+    localStorage.setItem("textarea", textArea);
     renderLastResgistered();
 });
